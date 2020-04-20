@@ -13,14 +13,14 @@ namespace MoodAnalyser
         {
             // creating moood analyser object
             MoodAnalyser moodAnalyser = new MoodAnalyser();
-            
+            MoodAnalyserFactory f = new MoodAnalyserFactory();
+            f.InvokeMoodAnalyser("I am happy");
           
         }
     }
 
     public class MoodAnalyser
     {
-        public int name = 19;
         /// <summary>
         /// private field message
         /// </summary>

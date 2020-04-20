@@ -106,20 +106,32 @@ namespace MoodAnalyser
             }
         }
 
-        public string InvokeMoodAnalyser()
+        /// <summary>
+        /// method to invoke mood analysis exception using reflection 
+        /// </summary>
+        /// <returns></returns>
+        public dynamic InvokeMoodAnalyser(object parameter)
         {
             try
             {
+
                 // Crate object using reflector
-                object createdObject = Activator.CreateInstance(type, "I am in Happy Mood");
-                MethodInfo method = type.GetMethod("MoodAnalyser");
+              
+                MethodInfo method = type.GetMethod("AnalyseMood");
+                object createdObject = Activator.CreateInstance(type, parameter);
                 method.Invoke(createdObject, null);
-                return default;
+                return "Happy";
+                
             }
-            catch(Exception)
+            catch(MoodAnalysisException)
             {
-                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NoSuchMethod, "Error ! Cannot invoke ")
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NoSuchMethod, "Error ! Cannot invoke MoodAnalyser");
             }
+            catch(Exception exception)
+            {
+                return exception.Message;
+            }
+
         }
     } 
 }
