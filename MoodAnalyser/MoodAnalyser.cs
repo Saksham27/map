@@ -2,7 +2,7 @@
 
 namespace MoodAnalyser
 {
-    public class MoodAnalyser
+    public class MoodAnalyser : Exception
     {
         /// <summary>
         /// private field message
@@ -35,10 +35,20 @@ namespace MoodAnalyser
 
         public string AnalyseMood()
         {
-            if (this.Message.Contains("sad", StringComparison.OrdinalIgnoreCase))
-                return "Sad";
-            else 
+            try
+            {
+                if (this.Message.Contains("sad", StringComparison.OrdinalIgnoreCase))
+                    return "Sad";
+                else
+                    return "Happy";
+            }
+            catch (NullReferenceException exception)
+            {
+                Console.WriteLine($"Null message exception : {exception.Message}");
                 return "Happy";
+            }
+                     
+                
         }
 
         /// <summary>
@@ -48,8 +58,9 @@ namespace MoodAnalyser
         static void Main(string[] args)
         {
             // creating moood analyser object
-            MoodAnalyser moodAnalyser = new MoodAnalyser("I am in Happy mood");
+            MoodAnalyser moodAnalyser = new MoodAnalyser(null);
             string mood = moodAnalyser.AnalyseMood();
+            Console.WriteLine(mood);
         }
     }
 }
