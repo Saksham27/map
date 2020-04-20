@@ -75,5 +75,18 @@ namespace MoodAnalyser.Test
             string mood = moodAnalyser.AnalyseMood();
             Assert.AreEqual(expected, mood);
         }
+
+        /// <summary>
+        /// Test Case 4.1 : Given class name , Test will pass if Mood AnalyserFactory creates object of given class name
+        /// </summary>
+        [Test]
+        public void GivenClassName_ShouldReturnObject()
+        {
+            object expected = new MoodAnalyser();
+            string className = "MoodAnalyser";
+            MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
+            object createdObject = moodAnalyserFactory.CreateObject(className);
+            Object.Equals(expected, createdObject);
+        }
     }
 }

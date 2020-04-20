@@ -10,7 +10,7 @@ namespace MoodAnalyser
         /// <summary>
         /// getting type of required class
         /// </summary>
-        Type type = typeof(MoodAnalyser);
+        Type type = Type.GetType("MoodAnalyser.MoodAnalyser");
 
         /// <summary>
         /// method to get constructor information of Type type and return the required constructor , default or parameterized
@@ -28,14 +28,14 @@ namespace MoodAnalyser
             return constructors[0];
         }
 
-        public object CreateObject(string className, ConstructorInfo constructor)
+        public object CreateObject(string className)
         {
             try
             {
                 if (className != type.Name)
                     throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ClassNotFound, "Class does not exist");
 
-                object createdObject = Activator.CreateInstance(className, type.Name);
+                object createdObject = Activator.CreateInstance(className, type.FullName);
                 return createdObject;
             }
             catch(MoodAnalysisException exception)

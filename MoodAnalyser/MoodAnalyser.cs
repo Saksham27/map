@@ -12,7 +12,7 @@ namespace MoodAnalyser
         {
             // creating moood analyser object
             MoodAnalyser moodAnalyser = new MoodAnalyser();
-            MoodAnalyserFactory.GetType();
+            
           
         }
     }
