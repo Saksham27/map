@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using MoodAnalyser;
 
 namespace MoodAnalyser.Test
 {
@@ -9,10 +10,15 @@ namespace MoodAnalyser.Test
         {
         }
 
+        // Test Case 1.1
         [Test]
-        public void Test1()
+        public void GivenSadMood_ShouldReturnSad()
         {
-            Assert.Pass();
+            string expected = "Sad";
+            string message = "I am in Sad mood";
+            MoodAnalyser moodAnalyser = new MoodAnalyser();
+            string mood = moodAnalyser.AnalyseMood(message);
+            Assert.AreEqual(expected, mood);
         }
     }
 }

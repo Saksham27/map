@@ -2,14 +2,14 @@
 
 namespace MoodAnalyser
 {
-    class MoodAnalyser
+    public class MoodAnalyser
     {
         public string AnalyseMood(string message)
         {
             if (message.Contains("sad", StringComparison.OrdinalIgnoreCase))
-                return "Sad Mood";
+                return "Sad";
             else 
-                return "Happy Mood";
+                return "Happy";
         }
 
         /// <summary>
