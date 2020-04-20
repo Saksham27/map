@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using MoodAnalyser;
+using System;
 
 namespace MoodAnalyser.Test
 {
@@ -44,7 +45,19 @@ namespace MoodAnalyser.Test
         {
             string expected = "Happy";
             string message = null;
-            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+            MoodAnalyser moodAnalyser = new MoodAnalyser();
+            string mood = moodAnalyser.AnalyseMood();
+            Assert.AreEqual(expected, mood);
+        }
+
+        /// <summary>
+        /// Test Case 2.1 : Given null , Test will pass if moodAnalyser throws MoodAnalysisException
+        /// </summary>
+        [Test]
+        public void GivenNullMood_ShouldThrowException()
+        {
+            string expected = "Enetered Null, Please Enter Proper Mood";
+            MoodAnalyser moodAnalyser = new MoodAnalyser(null);
             string mood = moodAnalyser.AnalyseMood();
             Assert.AreEqual(expected, mood);
         }

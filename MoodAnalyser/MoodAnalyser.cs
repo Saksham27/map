@@ -37,18 +37,18 @@ namespace MoodAnalyser
         {
             try
             {
+                if(this.Message == null)
+                    throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.EnteredNull, "Enetered Null, Please Enter Proper Mood");
+
                 if (this.Message.Contains("sad", StringComparison.OrdinalIgnoreCase))
-                    return "Sad";
+                    return "Sad";                      
                 else
                     return "Happy";
             }
-            catch (NullReferenceException exception)
+            catch(MoodAnalysisException exception)
             {
-                Console.WriteLine($"Null message exception : {exception.Message}");
-                return "Happy";
-            }
-                     
-                
+                return exception.Message;
+            }                      
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace MoodAnalyser
         {
             // creating moood analyser object
             MoodAnalyser moodAnalyser = new MoodAnalyser();
-            string mood = moodAnalyser.AnalyseMood();
-            Console.WriteLine(mood);
+            
+                   
         }
     }
 }

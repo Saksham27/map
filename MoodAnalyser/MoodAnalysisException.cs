@@ -4,18 +4,20 @@ using System.Text;
 
 namespace MoodAnalyser
 {
-    class MoodAnalysisException : Exception
+    public class MoodAnalysisException : Exception
     {
-        private ExceptionType _ExceptionType;
+        
         public enum ExceptionType
         {
             EnteredNull
         }
-        
 
-        public MoodAnalysisException(ExceptionType exceptionType, string message) : base(message)
+        readonly ExceptionType exceptionType;
+
+        public MoodAnalysisException(ExceptionType exceptionType, string exceptionMessage):base(exceptionMessage)
         {
-            this._ExceptionType = 
+            this.exceptionType = exceptionType;
+            
         }
     }
 }
