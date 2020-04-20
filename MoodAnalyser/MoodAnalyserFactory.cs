@@ -19,13 +19,21 @@ namespace MoodAnalyser
         /// <returns></returns>
         public ConstructorInfo GetConstructor(int noOfParameters = 0)
         {
-            ConstructorInfo[] constructors = type.GetConstructors();
-            foreach(ConstructorInfo constructor in constructors)
+            try
             {
-                if (constructor.GetParameters().Length == noOfParameters)
-                    return constructor;
+                ConstructorInfo[] constructors = type.GetConstructors();
+                foreach (ConstructorInfo constructor in constructors)
+                {
+                    if (constructor.GetParameters().Length == noOfParameters)
+                        return constructor;
+                }
+                return constructors[0];
             }
-            return constructors[0];
+            catch (Exception)
+            {
+
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ClassNotFound, "Class not found");
+            }
         }
 
         public object CreateObjectUsingClass(string className)
@@ -50,9 +58,9 @@ namespace MoodAnalyser
             {
                 if (constructor != GetConstructor(noOfParameters))
                     throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NoSuchMethod, "No Such Method exists");
-
-                object createdObject = constructor.Invoke(new object[0]);
-                return createdObject;
+                
+                    object createdObject = constructor.Invoke(new object[0]);
+                    return createdObject;         
             }
             catch (MoodAnalysisException exception)
             {

@@ -70,10 +70,5 @@ namespace MoodAnalyser
                 return exception.Message;
             }                      
         }
-
-        public static explicit operator ConstructorInfo(MoodAnalyser v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
