@@ -57,7 +57,7 @@ namespace MoodAnalyser
         }
 
         /// <summary>
-        /// method to instanciate object using constructor
+        /// method to instanciate object using default constructor
         /// </summary>
         /// <param name="constructor"> constructor</param>
         /// <param name="noOfParameters"> no of parameters </param>
@@ -78,23 +78,29 @@ namespace MoodAnalyser
             }
         }
 
+        /// <summary>
+        /// method to instanciate object using paramterized constructor
+        /// </summary>
+        /// <param name="class_name"></param>
+        /// <param name="constructor"></param>
+        /// <param name="parameterValue"></param>
+        /// <returns></returns>
         public object CreateObjectUsingParameterizedConstructor(string class_name, ConstructorInfo constructor, string parameterValue)
         {
             try
             {
                 // given class not equals to type name throw exception
                 if (class_name != type.Name)
-                    throw new MoodAnalysisException(MoodAnalysisException.MoodException.Class_Not_Found, "No such class");
+                    throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ClassNotFound, "No such class");
                 // given constructor name is not equals to constructor of type throw exception
                 if (constructor != type.GetConstructors()[1])
-                    throw new MoodAnalysisException(MoodAnalysisException.MoodException.No_SuchMethod, "No such Method Found");
-                // create instance with constructor
-                //var Object_return = constructor.Invoke(); 
+                    throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NoSuchMethod, "No such Method Found");
+                              
                 //creating instance using parametersised constructor
                 Object Object_return = Activator.CreateInstance(type, parameterValue);
                 return Object_return;
             }
-            catch (Exception ex) { return null; }
+            catch (Exception) { return null; }
         }
     } 
 }
