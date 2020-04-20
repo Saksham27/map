@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using MoodAnalyser;
 using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace MoodAnalyser.Test
 {
@@ -45,7 +47,7 @@ namespace MoodAnalyser.Test
         {
             string expected = "Happy";
             string message = null;
-            MoodAnalyser moodAnalyser = new MoodAnalyser();
+            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
             string mood = moodAnalyser.AnalyseMood();
             Assert.AreEqual(expected, mood);
         }
@@ -85,7 +87,34 @@ namespace MoodAnalyser.Test
             object expected = new MoodAnalyser();
             string className = "MoodAnalyser";
             MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
-            object createdObject = moodAnalyserFactory.CreateObject(className);
+            object createdObject = moodAnalyserFactory.CreateObjectUsingClass(className);
+            Object.Equals(expected, createdObject);
+        }
+
+        /// <summary>
+        /// Test Case 4.2 : Given class name when imporper , Test will pass if Mood AnalyserFactory throws an exception
+        /// </summary>
+        [Test]
+        public void GivenClassName_WhenImproper_ShouldthrowException()
+        {
+            string expected = "No Such class exists";
+            string className = "Hello";
+            MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
+            object createdObject = moodAnalyserFactory.CreateObjectUsingClass(className);
+            Object.Equals(expected, createdObject);
+        }
+
+        /// <summary>
+        /// Test Case 4.2 : Given constructor when imporper , Test will pass if Mood AnalyserFactory throws an exception
+        /// </summary>
+        [Test]
+        public void GivenConstructor_WhenImproper_ShouldthrowException()
+        {
+            string expected = "No Such Method exists";
+            
+            MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
+            ConstructorInfo constructor = moodAnalyserFactory.GetConstructor();
+            object createdObject = moodAnalyserFactory.CreateObjectUsingConstructor(constructor, 3);
             Object.Equals(expected, createdObject);
         }
     }
