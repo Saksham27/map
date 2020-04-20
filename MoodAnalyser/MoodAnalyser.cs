@@ -4,9 +4,38 @@ namespace MoodAnalyser
 {
     public class MoodAnalyser
     {
-        public string AnalyseMood(string message)
+        /// <summary>
+        /// private field message
+        /// </summary>
+        private string _message;
+
+        /// <summary>
+        /// getter and setter property for _message
+        /// </summary>
+        private string Message
         {
-            if (message.Contains("sad", StringComparison.OrdinalIgnoreCase))
+            get { return this._message;  }
+            set { this._message = value; }
+        }
+
+        /// <summary>
+        /// default constuctor
+        /// </summary>
+        public MoodAnalyser() { }
+
+        /// <summary>
+        /// parametrized constructor
+        /// </summary>
+        /// <param name="message"> string type message </param>
+        public MoodAnalyser(string message)
+        {
+            this.Message = message;
+        }
+
+
+        public string AnalyseMood()
+        {
+            if (this.Message.Contains("sad", StringComparison.OrdinalIgnoreCase))
                 return "Sad";
             else 
                 return "Happy";
@@ -19,8 +48,8 @@ namespace MoodAnalyser
         static void Main(string[] args)
         {
             // creating moood analyser object
-            MoodAnalyser moodAnalyser = new MoodAnalyser();
-            string mood = moodAnalyser.AnalyseMood("I am in Happy mood");
+            MoodAnalyser moodAnalyser = new MoodAnalyser("I am in Happy mood");
+            string mood = moodAnalyser.AnalyseMood();
         }
     }
 }
