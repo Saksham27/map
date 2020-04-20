@@ -10,7 +10,9 @@ namespace MoodAnalyser.Test
         {
         }
 
-        // Test Case 1.1
+        /// <summary>
+        /// Test Case 1.1 : Given "I am in Sad mood message", Test will pass if moodAnalyser Returns "Sad"
+        /// </summary>
         [Test]
         public void GivenSadMood_ShouldReturnSad()
         {
@@ -21,12 +23,27 @@ namespace MoodAnalyser.Test
             Assert.AreEqual(expected, mood);
         }
 
-        // Test Case 1.2
+        /// <summary>
+        /// Test Case 1.2 : Given "I am in any mood message", Test will pass if moodAnalyser Returns "Happy"
+        /// </summary>
         [Test]
         public void GivenAnyMood_ShouldReturnHappy()
         {
             string expected = "Happy";
             string message = "I am in any mood";
+            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+            string mood = moodAnalyser.AnalyseMood();
+            Assert.AreEqual(expected, mood);
+        }
+
+        /// <summary>
+        /// Test Case 2.1 : Given null , Test will pass if moodAnalyser Returns "Happy"
+        /// </summary>
+        [Test]
+        public void GivenNullMood_ShouldReturnHappy()
+        {
+            string expected = "Happy";
+            string message = null;
             MoodAnalyser moodAnalyser = new MoodAnalyser(message);
             string mood = moodAnalyser.AnalyseMood();
             Assert.AreEqual(expected, mood);

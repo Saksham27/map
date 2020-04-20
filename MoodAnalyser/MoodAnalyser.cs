@@ -58,7 +58,7 @@ namespace MoodAnalyser
         static void Main(string[] args)
         {
             // creating moood analyser object
-            MoodAnalyser moodAnalyser = new MoodAnalyser(null);
+            MoodAnalyser moodAnalyser = new MoodAnalyser();
             string mood = moodAnalyser.AnalyseMood();
             Console.WriteLine(mood);
         }
