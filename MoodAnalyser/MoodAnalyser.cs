@@ -40,6 +40,9 @@ namespace MoodAnalyser
                 if(this.Message == null)
                     throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.EnteredNull, "Enetered Null, Please Enter Proper Mood");
 
+                if (this.Message.Length == 0)
+                    throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.EnteredEmpty, "Empty message, Please enter Proper Mood");
+
                 if (this.Message.Contains("sad", StringComparison.OrdinalIgnoreCase))
                     return "Sad";                      
                 else

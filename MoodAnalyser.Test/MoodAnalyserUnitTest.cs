@@ -38,7 +38,7 @@ namespace MoodAnalyser.Test
         }
 
         /// <summary>
-        /// Test Case 2.1 : Given null , Test will pass if moodAnalyser Returns "Happy"
+        /// Test Case 2.1 : Given null , Test will pass if moodAnalyser Returns "Happy" ***** THIS TEST WILL FAIL ***** To understand check Test Case 2.1
         /// </summary>
         [Test]
         public void GivenNullMood_ShouldReturnHappy()
@@ -51,13 +51,27 @@ namespace MoodAnalyser.Test
         }
 
         /// <summary>
-        /// Test Case 2.1 : Given null , Test will pass if moodAnalyser throws MoodAnalysisException
+        /// Test Case 3.1 : Given null , Test will pass if moodAnalyser throws MoodAnalysisException
         /// </summary>
         [Test]
         public void GivenNullMood_ShouldThrowException()
         {
             string expected = "Enetered Null, Please Enter Proper Mood";
-            MoodAnalyser moodAnalyser = new MoodAnalyser(null);
+            string message = null;
+            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+            string mood = moodAnalyser.AnalyseMood();
+            Assert.AreEqual(expected, mood);
+        }
+
+        /// <summary>
+        /// Test Case 3.2 : Given empty message , Test will pass if moodAnalyser throws MoodAnalysisException
+        /// </summary>
+        [Test]
+        public void GivenEmptyMood_ShouldThrowException()
+        {
+            string expected = "Empty message, Please enter Proper Mood";
+            string message = "";
+            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
             string mood = moodAnalyser.AnalyseMood();
             Assert.AreEqual(expected, mood);
         }
