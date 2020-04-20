@@ -2,8 +2,24 @@
 
 namespace MoodAnalyser
 {
-    public class MoodAnalyser : Exception
+    public class MainClass
     {
+        /// <summary>
+        /// main method
+        /// </summary>
+        /// <param name="args"> no parameters </param>
+        static void Main(string[] args)
+        {
+            // creating moood analyser object
+            MoodAnalyser moodAnalyser = new MoodAnalyser();
+            MoodAnalyserFactory.GetType();
+          
+        }
+    }
+
+    public class MoodAnalyser
+    {
+        public int name = 19;
         /// <summary>
         /// private field message
         /// </summary>
@@ -52,18 +68,6 @@ namespace MoodAnalyser
             {
                 return exception.Message;
             }                      
-        }
-
-        /// <summary>
-        /// main method
-        /// </summary>
-        /// <param name="args"> no parameters </param>
-        static void Main(string[] args)
-        {
-            // creating moood analyser object
-            MoodAnalyser moodAnalyser = new MoodAnalyser();
-            
-                   
         }
     }
 }
