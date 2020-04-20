@@ -9,14 +9,7 @@ namespace MoodAnalyser
         /// main method
         /// </summary>
         /// <param name="args"> no parameters </param>
-        static void Main(string[] args)
-        {
-            // creating moood analyser object
-            MoodAnalyser moodAnalyser = new MoodAnalyser();
-            MoodAnalyserFactory f = new MoodAnalyserFactory();
-            f.InvokeMoodAnalyser("I am happy");
-          
-        }
+        static void Main(string[] args) { }          
     }
 
     public class MoodAnalyser

@@ -148,7 +148,7 @@ namespace MoodAnalyser.Test
         }
 
         /// <summary>
-        /// Test Case 5.3 : Given wrong constructor paramter , Test will pass if Mood AnalyserFactory throws exception sayinh no such class
+        /// Test Case 5.3 : Given wrong constructor paramter , Test will pass if Mood AnalyserFactory throws exception saying no such class
         /// </summary>
         [Test]
         public void GivenConstructor_WhenImproper_ShouldThrowException()
@@ -162,12 +162,27 @@ namespace MoodAnalyser.Test
             Assert.AreEqual(expected, createdObject);
         }
 
+        /// <summary>
+        /// Test Case 6.1 : Given Happy message should return Happy
+        /// </summary>
         [Test]
         public void GivenHappyMessage_WhenProper_ShouldReturnHappy()
         {
             string expected = "Happy";
             MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
-            dynamic mood = moodAnalyserFactory.InvokeMoodAnalyser("I am in happy mood");
+            dynamic mood = moodAnalyserFactory.InvokeMoodAnalyser("AnalyseMood","I am in happy mood");
+            Assert.AreEqual(expected, mood);
+        }
+
+        // <summary>
+        /// Test Case 6.1 : Given Happy message when improper should throw exception
+        /// </summary>
+        [Test]
+        public void GivenHappyMessage_WhenImroper_ShouldThrowException()
+        {
+            string expected = "Error ! Cannot invoke MoodAnalyser";
+            MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
+            dynamic mood = moodAnalyserFactory.InvokeMoodAnalyser("Mood", "I am in happy mood");
             Assert.AreEqual(expected, mood);
         }
     }
